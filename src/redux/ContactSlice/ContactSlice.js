@@ -22,59 +22,59 @@ const initialState = {
 const contactSlice = createSlice({
   name: 'contacts',
   initialState,
-  extraReducers: {
-    [fetchAllContactsLoading]: store => {
-      store.loading = true;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchAllContactsLoading, store => {
+        store.loading = true;
+      })
 
-    [fetchAllContactsSuccess]: (store, { payload }) => {
-      store.loading = false;
-      store.items = payload;
-    },
+      .addCase(fetchAllContactsSuccess, (store, { payload }) => {
+        store.loading = false;
+        store.items = payload;
+      })
+      .addCase(fetchAllContactsError, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
 
-    [fetchAllContactsError]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
-    },
+      .addCase(fetchAddContactLoading, store => {
+        store.loading = true;
+      })
 
-    [fetchAddContactLoading]: store => {
-      store.loading = true;
-    },
+      .addCase(fetchAddContactSuccess, (store, { payload }) => {
+        store.loading = false;
+        store.items.push(payload);
+      })
 
-    [fetchAddContactSuccess]: (store, { payload }) => {
-      store.loading = false;
-      store.items.push(payload);
-    },
+      .addCase(fetchAddContactError, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
 
-    [fetchAddContactError]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
-    },
+      .addCase(fetchDeleteContactLoading, store => {
+        store.loading = true;
+      })
 
-    [fetchDeleteContactLoading]: store => {
-      store.loading = true;
-    },
+      .addCase(fetchDeleteContactSuccess, (store, { payload }) => {
+        store.loading = false;
+        const index = store.items.findIndex(item => item.id === payload);
+        store.items.splice(index, 1);
+      })
 
-    [fetchDeleteContactSuccess]: (store, { payload }) => {
-      store.loading = false;
-      const index = store.items.findIndex(item => item.id === payload);
-      store.items.splice(index, 1);
-    },
-
-    [fetchDeleteContactError]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
-    },
-
-    // addContact: (state, action) => {
-    //   state.contacts.push(action.payload);
-    // },
-    // deleteContact: (state, action) => {
-    //   state.contacts = state.contacts.filter(
-    //     contact => contact.id !== action.payload
-    //   );
-    // },
+      .addCase(fetchDeleteContactError, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      });
   },
+
+  // addContact: (state, action) => {
+  //   state.contacts.push(action.payload);
+  // },
+  // deleteContact: (state, action) => {
+  //   state.contacts = state.contacts.filter(
+  //     contact => contact.id !== action.payload
+  //   );
+  // },
 });
 
 const persistConfig = { key: 'contacts', storage };
@@ -83,5 +83,3 @@ export const persistContactsReducer = persistReducer(
   persistConfig,
   contactSlice.reducer
 );
-
-export const { addContact, deleteContact } = contactSlice.actions;

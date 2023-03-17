@@ -3,12 +3,13 @@ import React from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-import { getFilter } from '../redux/selector';
+import { getFilter, getAllContacts } from '../redux/selector';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllContacts } from '../redux/operations';
 
 const App = () => {
   const filter = useSelector(getFilter);
+  const contacts = useSelector(getAllContacts);
   console.log(filter);
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const App = () => {
     );
   };
   console.log(filter);
-  // console.log(filteredContacts(contacts, filter));
+  console.log(filteredContacts(contacts, filter));
 
   return (
     <div>
