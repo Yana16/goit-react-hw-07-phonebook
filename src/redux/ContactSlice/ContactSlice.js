@@ -2,7 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import * as actions from '../../redux/actions';
+import {
+  fetchAllContactsLoading,
+  fetchAllContactsSuccess,
+  fetchAllContactsError,
+  fetchAddContactLoading,
+  fetchAddContactSuccess,
+  fetchAddContactError,
+  fetchDeleteContactLoading,
+  fetchDeleteContactSuccess,
+  fetchDeleteContactError,
+} from '../../redux/actions';
 
 const initialState = {
   name: '',
@@ -12,46 +22,46 @@ const initialState = {
 const contactSlice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {
-    [actions.fetchAllContactsLoading]: store => {
+  extraReducers: {
+    [fetchAllContactsLoading]: store => {
       store.loading = true;
     },
 
-    [actions.fetchAllContactsSuccess]: (store, { payload }) => {
+    [fetchAllContactsSuccess]: (store, { payload }) => {
       store.loading = false;
       store.items = payload;
     },
 
-    [actions.fetchAllContactsError]: (store, { payload }) => {
+    [fetchAllContactsError]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
 
-    [actions.fetchAddContactLoading]: store => {
+    [fetchAddContactLoading]: store => {
       store.loading = true;
     },
 
-    [actions.fetchAddContactSuccess]: (store, { payload }) => {
+    [fetchAddContactSuccess]: (store, { payload }) => {
       store.loading = false;
       store.items.push(payload);
     },
 
-    [actions.fetchAddContactError]: (store, { payload }) => {
+    [fetchAddContactError]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
 
-    [actions.fetchDeleteContactLoading]: store => {
+    [fetchDeleteContactLoading]: store => {
       store.loading = true;
     },
 
-    [actions.fetchDeleteContactSuccess]: (store, { payload }) => {
+    [fetchDeleteContactSuccess]: (store, { payload }) => {
       store.loading = false;
       const index = store.items.findIndex(item => item.id === payload);
       store.items.splice(index, 1);
     },
 
-    [actions.fetchDeleteContactError]: (store, { payload }) => {
+    [fetchDeleteContactError]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },

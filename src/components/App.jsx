@@ -23,8 +23,8 @@ const App = () => {
       contact.name.toLowerCase().includes(normolizedFilter)
     );
   };
-
-  console.log(filteredContacts(contacts, filter));
+  console.log(filter);
+  // console.log(filteredContacts(contacts, filter));
 
   return (
     <div>
