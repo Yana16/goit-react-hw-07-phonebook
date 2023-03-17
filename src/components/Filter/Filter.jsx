@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../Filter/filter.module.css';
 
 import { useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/FilterSlice/FilterSlice';
+import { changeFilter } from '../../redux/filter/filter-slice';
 
 export default function Filter() {
   const dispatch = useDispatch();

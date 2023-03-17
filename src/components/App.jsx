@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
+import { store } from '../redux/store';
 import React from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-import { getFilter, getAllContacts } from '../redux/selector';
+import { getFilter } from '../redux/filter/filter-selector';
+import { getAllContacts } from '../redux/contacts/contact-selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllContacts } from '../redux/operations';
+import { fetchAllContacts } from '../redux/contacts/contact-operations';
 
 const App = () => {
   const filter = useSelector(getFilter);

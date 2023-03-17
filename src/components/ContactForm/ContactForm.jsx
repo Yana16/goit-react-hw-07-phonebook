@@ -4,7 +4,7 @@ import styles from '../ContactForm/contact-form.module.css';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 
-import { fetchAddContact } from '../../redux/operations';
+import { fetchAddContact } from '../../redux/contacts/contact-operations';
 
 export default function ContactForm() {
   const [name, setName] = useState('');

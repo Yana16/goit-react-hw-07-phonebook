@@ -1,25 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { filterSlice } from '../redux/FilterSlice/FilterSlice';
-import {
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
 
-import { persistContactsReducer } from '../redux/ContactSlice/ContactSlice';
+import { rootReducer } from '../redux/root-reducer';
 
 export const store = configureStore({
-  reducer: { contacts: persistContactsReducer, filter: filterSlice.reducer },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  reducer: rootReducer,
 });
-
-export const persistor = persistStore(store);
