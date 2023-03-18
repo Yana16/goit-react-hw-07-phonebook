@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { store } from '../redux/store';
 import React from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
@@ -12,7 +11,6 @@ import { fetchAllContacts } from '../redux/contacts/contact-operations';
 const App = () => {
   const filter = useSelector(getFilter);
   const contacts = useSelector(getAllContacts);
-  console.log(filter);
 
   const dispatch = useDispatch();
 
@@ -22,11 +20,12 @@ const App = () => {
 
   const filteredContacts = (contacts, filter) => {
     const normolizedFilter = filter.toLowerCase();
+
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normolizedFilter)
     );
   };
-  console.log(filter);
+
   console.log(filteredContacts(contacts, filter));
 
   return (
