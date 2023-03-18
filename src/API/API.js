@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const contactsInstance = axios.create({
-  baseURL: 'https://64143f3d600d6c838744828d.mockapi.io/api/contacts',
+  baseURL: 'https://641566e90412de6d0f91f2ce.mockapi.io/api/contacts',
 });
 
 export const getAllContacts = async () => {

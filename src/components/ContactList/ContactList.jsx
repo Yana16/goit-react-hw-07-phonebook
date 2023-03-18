@@ -14,7 +14,7 @@ const ContactList = ({ contacts }) => {
     <ul className={styles.TaskList}>
       {contacts.map(contact => (
         <li className={styles.TaskList_item} key={contact.id}>
-          {contact.name + ':' + contact.number}
+          {contact.name + ':          ' + contact.phone}
 
           {
             <button
